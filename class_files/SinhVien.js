@@ -9,6 +9,7 @@ class SinhVien {
 
     //Đóng gói
     //getter, setter
+
     getTen() {
         return this.ten;
     }

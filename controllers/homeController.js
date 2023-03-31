@@ -6,60 +6,52 @@ const HoSoDangKy = require('../class_files/HoSoDangKy');
 
 let maHoSo = 0;
 let maHoSoCanSua, maHoSoCanXoa;
+let dsNganhCuaTruong = quanLyTuyenSinh.getDsNganhCuaTruong();
 
 const getHomePage = (req, res) => {
-    const dsHoSoDangKy = quanLyTuyenSinh.dsHoSoDangKy;
-    const dsHoSoDau = quanLyTuyenSinh.dsHoSoDau;
+    const dsHoSoDangKy = quanLyTuyenSinh.getDsHoSoDangKy();
+    const dsHoSoDau = quanLyTuyenSinh.getDsHoSoDau();
+
+    console.log("ds Nganh cua truong: ", dsNganhCuaTruong);
+    console.log("ds ho so dk: ", dsHoSoDangKy);
+    console.log("ds hoso dau, sau khi nhan xuly: ", dsHoSoDau);
+
     res.render('home.ejs', { listHoSo: dsHoSoDangKy, listHoSoDau: dsHoSoDau });
 }
 
-
 const getCreatePage = (req, res) => {
-    const dsNganh = quanLyTuyenSinh.dsNganh;
-    res.render('create.ejs', { listNganh: dsNganh });
+    res.render('create.ejs', { listNganh: dsNganhCuaTruong });
 }
 
 const getEditPage = (req, res) => {
     maHoSoCanSua = +req.params.id;
-    const dsNganh = quanLyTuyenSinh.dsNganh;
-    //console.log(typeof maHoSoCanSua);
-    console.log(dsNganh);
 
-    //console.log(quanLyTuyenSinh.dsHoSoDangKy);
-
-    let hoSoCanSua = quanLyTuyenSinh.dsHoSoDangKy.find((hoSo) => {
+    let hoSoCanSua = quanLyTuyenSinh.getDsHoSoDangKy().find((hoSo) => {
         return hoSo.maHoSo === maHoSoCanSua;
     })
-    //console.log(hoSoCanSua);
+    console.log("ma ho so can sua: ", maHoSoCanSua);
 
-    res.render('edit.ejs', { hoSoCanSua: hoSoCanSua, listNganh: dsNganh });
+    res.render('edit.ejs', { hoSoCanSua: hoSoCanSua, listNganh: dsNganhCuaTruong });
 }
-
-
 
 const postCreateUser = (req, res) => {
     const maNganh = req.body.nganhHoc;
     const ten = req.body.ten;
     const diaChi = req.body.diaChi;
     const maSo = req.body.maSo;
-    const diem3Mon = req.body.diem3Mon;
+    const diem3Mon = +req.body.diem3Mon;
 
     const sinhVien = new SinhVien(ten, diaChi, maSo, diem3Mon);
     maHoSo++;
-    const nganhHoc = quanLyTuyenSinh.dsNganh.find((nganhHienTai) => {
+    const nganhHoc_found = dsNganhCuaTruong.find((nganhHienTai) => {
         return nganhHienTai.getMaNganh() === maNganh;
     })
-    //console.log(nganhHoc);
-
+    const nganhHoc = new Nganh(nganhHoc_found.getMaNganh(), nganhHoc_found.getTenNganh(), nganhHoc_found.getDiemChuan(), nganhHoc_found.getSoChiTieu());
     const hoSoDangKy = new HoSoDangKy(sinhVien, nganhHoc, maHoSo);
 
     quanLyTuyenSinh.themHoSoDangKy(hoSoDangKy);
-    // Code xử lý các trường dữ liệu ở đây
-    //console.log(nganh);
 
     res.redirect('/');
-    //console.log(quanLyTuyenSinh.dsHoSoDangKy);
-
 }
 
 const postUpdateUser = (req, res) => {
@@ -67,19 +59,19 @@ const postUpdateUser = (req, res) => {
     const ten_new = req.body.ten;
     const diaChi_new = req.body.diaChi;
     const maSo_new = req.body.maSo;
-    const diem3Mon_new = req.body.diem3Mon;
+    const diem3Mon_new = +req.body.diem3Mon;
 
-    const sinhVien_new = new SinhVien(ten_new, diaChi_new, maSo_new, diem3Mon_new);
-
-    const nganhHoc_new = quanLyTuyenSinh.dsNganh.find((nganhHienTai) => {
+    const nganhHoc_found = dsNganhCuaTruong.find((nganhHienTai) => {
         return nganhHienTai.getMaNganh() === maNganh_new;
     })
 
-    console.log(nganhHoc_new);
+    const nganhHoc_new = Object.assign({}, nganhHoc_found);
+    const sinhVien_new = new SinhVien(ten_new, diaChi_new, maSo_new, diem3Mon_new);
 
-    const hoSoCanSua = new HoSoDangKy(sinhVien_new, nganhHoc_new, maHoSoCanSua);
+    console.log("Nganh sau khi edit: ", nganhHoc_new);
+    console.log("Sinh vien sau khi edit: ", sinhVien_new);
 
-    quanLyTuyenSinh.suaHoSoDangKy(hoSoCanSua);
+    quanLyTuyenSinh.suaHoSoDangKy(maHoSoCanSua, sinhVien_new, nganhHoc_new);
 
     res.redirect('/');
 }
@@ -87,10 +79,7 @@ const postUpdateUser = (req, res) => {
 const postDeleteUser = (req, res) => {
     maHoSoCanXoa = +req.params.id;
 
-
-    //console.log(quanLyTuyenSinh.dsHoSoDangKy);
-
-    let hoSoCanXoa = quanLyTuyenSinh.dsHoSoDangKy.find((hoSo) => {
+    let hoSoCanXoa = quanLyTuyenSinh.getDsHoSoDangKy().find((hoSo) => {
         return hoSo.maHoSo === maHoSoCanXoa;
     })
     quanLyTuyenSinh.xoaHoSoDangKy(hoSoCanXoa);
@@ -99,7 +88,7 @@ const postDeleteUser = (req, res) => {
 
 const postHandleUser = (req, res) => {
     quanLyTuyenSinh.xuLyHoSoDangKy();
-    console.log(quanLyTuyenSinh.dsHoSoDau);
+    console.log(quanLyTuyenSinh.getDsHoSoDau());
     res.redirect('/');
 }
 

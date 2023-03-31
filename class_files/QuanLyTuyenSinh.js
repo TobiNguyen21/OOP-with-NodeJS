@@ -5,8 +5,18 @@ const SinhVien = require('./SinhVien');
 class QuanLyTuyenSinh {
     constructor() {
         this.dsHoSoDangKy = [];
-        this.dsNganh = [];
+        this.dsNganhCuaTruong = [];
         this.dsHoSoDau = [];
+    }
+
+    getDsNganhCuaTruong() {
+        return this.dsNganhCuaTruong;
+    }
+    getDsHoSoDangKy() {
+        return this.dsHoSoDangKy;
+    }
+    getDsHoSoDau() {
+        return this.dsHoSoDau;
     }
 
     // Phương thức thêm hồ sơ đăng ký
@@ -15,14 +25,13 @@ class QuanLyTuyenSinh {
     }
 
     //Phương thức sửa hồ sơ
-    suaHoSoDangKy(hoSoCanSua) {
+    suaHoSoDangKy(maHoSoCanSua, sinhVien_new, nganhHoc_new) {
         this.dsHoSoDangKy.forEach((hoSoHienTai) => {
-            if (hoSoHienTai.getMaHoSo() === hoSoCanSua.maHoSo) {
-                hoSoHienTai.setSinhVien(hoSoCanSua.sinhVien);
-                hoSoHienTai.setNganhHoc(hoSoCanSua.nganhHoc);
+            if (hoSoHienTai.getMaHoSo() === maHoSoCanSua) {
+                hoSoHienTai.setSinhVien(sinhVien_new);
+                hoSoHienTai.setNganhHoc(nganhHoc_new);
             }
         })
-
     }
 
     // Phương thức xóa hồ sơ đăng ký
@@ -37,8 +46,8 @@ class QuanLyTuyenSinh {
     xuLyHoSoDangKy() {
         this.dsHoSoDau.splice(0, this.dsHoSoDau.length);// reset list
         this.dsHoSoDangKy.forEach((hoSoHienTai) => {
-            this.dsNganh.forEach((nganhHienTai) => {
-                if (hoSoHienTai.nganhHoc.getMaNganh() === nganhHienTai.getMaNganh() && hoSoHienTai.sinhVien.getDiem3Mon() > nganhHienTai.getDiemChuan()) {
+            this.dsNganhCuaTruong.forEach((nganhHienTai) => {
+                if (hoSoHienTai.nganhHoc.getMaNganh() === nganhHienTai.getMaNganh() && hoSoHienTai.sinhVien.getDiem3Mon() >= nganhHienTai.getDiemChuan()) {
                     this.dsHoSoDau.push(hoSoHienTai);
                 }
             })
@@ -50,13 +59,13 @@ class QuanLyTuyenSinh {
 const quanLyTuyenSinh = new QuanLyTuyenSinh();
 
 // Khởi tạo các đối tượng
-const CNTT = new Nganh('CNTT', "Công nghệ thông tin", 27, 50);
-quanLyTuyenSinh.dsNganh.push(CNTT);
-const KHMT = new Nganh('KHMT', "Khoa học máy tính", 28, 40);
-quanLyTuyenSinh.dsNganh.push(KHMT);
-const KTMT = new Nganh('KTMT', "Khoa học và kỹ thuật máy tính", 22, 30);
-quanLyTuyenSinh.dsNganh.push(KTMT);
-const DTVT = new Nganh('DTVT', "Điện Tử Viễn Thông", 24.50, 50);
-quanLyTuyenSinh.dsNganh.push(DTVT);
+const CNTT = new Nganh('CNTT', "Công nghệ thông tin", 27, 500);
+quanLyTuyenSinh.dsNganhCuaTruong.push(CNTT);
+const KHMT = new Nganh('KHMT', "Khoa học máy tính", 28, 100);
+quanLyTuyenSinh.dsNganhCuaTruong.push(KHMT);
+const KHDL = new Nganh('KHDL', "Khoa học dữ liệu", 25.5, 50);
+quanLyTuyenSinh.dsNganhCuaTruong.push(KHDL);
+const DTVT = new Nganh('DTVT', "Điện Tử Viễn Thông", 24.5, 300);
+quanLyTuyenSinh.dsNganhCuaTruong.push(DTVT);
 
 module.exports = quanLyTuyenSinh;

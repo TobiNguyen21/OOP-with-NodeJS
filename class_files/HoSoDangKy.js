@@ -1,5 +1,3 @@
-const Nganh = require('./Nganh');
-const SinhVien = require('./SinhVien');
 // Định nghĩa lớp Hồ sơ đăng ký
 class HoSoDangKy {
     constructor(sinhVien, nganhHoc, maHoSo) {
@@ -21,6 +19,7 @@ class HoSoDangKy {
     getNganhHoc() {
         return this.nganhHoc;
     }
+
     setNganhHoc(nganhHoc) {
         this.nganhHoc.setMaNganh(nganhHoc.maNganh);
         this.nganhHoc.setTenNganh(nganhHoc.tenNganh);

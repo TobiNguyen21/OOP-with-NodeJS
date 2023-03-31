@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sửa hồ sơ</title>
+    <title>Quản lý tuyển sinh</title>
     <link href="/styles.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -21,13 +21,13 @@
                 <select id="nganh">
                     <option value="CNTT">Công nghệ thông tin</option>
                     <option value="KHMT">Khoa học máy tính</option>
-                    <option value="KTMT">Kỹ thuật máy tính</option>
+                    <option value="KHDL">Khoa học dữ liệu</option>
                     <option value="DTVT">Điện tử viễn thông</option>
                 </select><button id="btnThongTinNganh">chọn</button><br />
             </div>
             <div class="input-group">
-                <label>Điểm chuẩn:</label>
-                <input type="number" id="diemChuan" name="diemChuan" style="display: none;" /><br />
+                <label>Chỉ tiêu lấy:</label>
+                <input type="number" id="soChitieu" name="soChitieu" style="display: none;" readonly value="" /><br />
             </div>
 
         </fieldset>
@@ -47,15 +47,16 @@
                 </div>
                 <div class=" input-group">
                     <label>Mã số: </label>
-                    <input type="text" name="maSo" value="<%=hoSoCanSua.sinhVien.maSo%>" />
+                    <input type="number" name="maSo" value="<%=hoSoCanSua.sinhVien.maSo%>" />
                 </div>
                 <div class=" input-group">
                     <label>Điểm 3 môn: </label>
-                    <input type="number" name="diem3Mon" value="<%=hoSoCanSua.sinhVien.diem3Mon%>" />
+                    <input type="number" name="diem3Mon" min="0" max="30" step="0.1"
+                        value="<%=hoSoCanSua.sinhVien.diem3Mon%>" />
                 </div>
                 <div class=" input-group">
                     <label>Ngành đã chọn: </label>
-                    <input type="text" name="nganhHoc" value="<%=hoSoCanSua.nganhHoc.maNganh%>" />
+                    <input type="text" name="nganhHoc" readonly value="<%=hoSoCanSua.nganhHoc.maNganh%>" />
                 </div>
 
                 <div>
@@ -69,31 +70,30 @@
         const btnChon = document.querySelector('#btnThongTinNganh');
         btnChon.addEventListener('click', () => {
             const nganh = document.querySelector('#nganh');
-            const diemChuan = document.querySelector('#diemChuan');
-            const soChitieu = document.querySelector('#soChiTieu');
+            const soChitieu = document.querySelector('#soChitieu');
             const nganhHoc = document.querySelector('input[name = "nganhHoc"]');
             //console.log(nganh.value);
 
 
             switch (nganh.value) {
                 case 'CNTT':
-                    diemChuan.value = <%=listNganh[0].diemChuan %>;
+                    soChitieu.value = <%=listNganh[0].getSoChiTieu() %>;
                     nganhHoc.setAttribute('value', 'CNTT');
                     break;
                 case 'KHMT':
-                    diemChuan.value = <%=listNganh[1].diemChuan %>;
+                    soChitieu.value = <%=listNganh[1].getSoChiTieu() %>;
                     nganhHoc.setAttribute('value', 'KHMT');
                     break;
-                case 'KTMT':
-                    diemChuan.value = <%=listNganh[2].diemChuan %>;
-                    nganhHoc.setAttribute('value', 'KTMT');
+                case 'KHDL':
+                    soChitieu.value = <%=listNganh[2].getSoChiTieu() %>;
+                    nganhHoc.setAttribute('value', 'KHDL');
                     break;
                 case 'DTVT':
-                    diemChuan.value = <%=listNganh[3].diemChuan %>;
+                    soChitieu.value = <%=listNganh[3].getSoChiTieu() %>;
                     nganhHoc.setAttribute('value', 'DTVT');
                     break;
             }
-            document.querySelector("#diemChuan").style.display = "inline";
+            document.querySelector("#soChitieu").style.display = "inline";
         })
 
     </script>

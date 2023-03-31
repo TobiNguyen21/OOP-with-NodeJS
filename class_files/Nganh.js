@@ -1,9 +1,10 @@
 // Định nghĩa lớp Ngành
 class Nganh {
-    constructor(maNganh, tenNganh, diemChuan) {
+    constructor(maNganh, tenNganh, diemChuan, soChiTieu) {
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;
         this.diemChuan = diemChuan;
+        this.soChiTieu = soChiTieu;
     };
 
     getMaNganh() {
@@ -27,7 +28,12 @@ class Nganh {
         this.diemChuan = diemChuan;
     }
 
-
+    getSoChiTieu() {
+        return this.soChiTieu;
+    }
+    setSoChiTieu(soChiTieu) {
+        this.soChiTieu = soChiTieu;
+    }
 };
 
 module.exports = Nganh;
