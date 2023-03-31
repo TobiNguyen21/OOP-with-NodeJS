@@ -43,10 +43,10 @@ const postCreateUser = (req, res) => {
 
     const sinhVien = new SinhVien(ten, diaChi, maSo, diem3Mon);
     maHoSo++;
-    const nganhHoc_found = dsNganhCuaTruong.find((nganhHienTai) => {
+    const nganhHoc_beFound = dsNganhCuaTruong.find((nganhHienTai) => {
         return nganhHienTai.getMaNganh() === maNganh;
     })
-    const nganhHoc = new Nganh(nganhHoc_found.getMaNganh(), nganhHoc_found.getTenNganh(), nganhHoc_found.getDiemChuan(), nganhHoc_found.getSoChiTieu());
+    const nganhHoc = new Nganh(nganhHoc_beFound.getMaNganh(), nganhHoc_beFound.getTenNganh(), nganhHoc_beFound.getDiemChuan(), nganhHoc_beFound.getSoChiTieu());
     const hoSoDangKy = new HoSoDangKy(sinhVien, nganhHoc, maHoSo);
 
     quanLyTuyenSinh.themHoSoDangKy(hoSoDangKy);
@@ -61,11 +61,11 @@ const postUpdateUser = (req, res) => {
     const maSo_new = req.body.maSo;
     const diem3Mon_new = +req.body.diem3Mon;
 
-    const nganhHoc_found = dsNganhCuaTruong.find((nganhHienTai) => {
+    const nganhHoc_beFound = dsNganhCuaTruong.find((nganhHienTai) => {
         return nganhHienTai.getMaNganh() === maNganh_new;
     })
 
-    const nganhHoc_new = Object.assign({}, nganhHoc_found);
+    const nganhHoc_new = Object.assign({}, nganhHoc_beFound);
     const sinhVien_new = new SinhVien(ten_new, diaChi_new, maSo_new, diem3Mon_new);
 
     console.log("Nganh sau khi edit: ", nganhHoc_new);
