@@ -6,12 +6,12 @@ const HoSoDangKy = require('../class_files/HoSoDangKy');
 
 let maHoSo = 0;
 let maHoSoCanSua, maHoSoCanXoa;
-let dsNganhCuaTruong = quanLyTuyenSinh.getDsNganhCuaTruong();
+let dsNganhCuaTruong = quanLyTuyenSinh.getDsNganhCuaTruong;
 
 //---------------Methods get-------------------------
 const getHomePage = (req, res) => {
-    const dsHoSoDangKy = quanLyTuyenSinh.getDsHoSoDangKy();
-    const dsHoSoDau = quanLyTuyenSinh.getDsHoSoDau();
+    const dsHoSoDangKy = quanLyTuyenSinh.getDsHoSoDangKy;
+    const dsHoSoDau = quanLyTuyenSinh.getDsHoSoDau;
 
     console.log("ds Nganh cua truong: ", dsNganhCuaTruong);
     console.log("ds ho so dk: ", dsHoSoDangKy);
@@ -27,7 +27,7 @@ const getCreatePage = (req, res) => {
 const getEditPage = (req, res) => {
     maHoSoCanSua = +req.params.id;
 
-    let hoSoCanSua = quanLyTuyenSinh.getDsHoSoDangKy().find((hoSo) => {
+    let hoSoCanSua = quanLyTuyenSinh.getDsHoSoDangKy.find((hoSo) => {
         return hoSo.maHoSo === maHoSoCanSua;
     })
     console.log("ma ho so can sua: ", maHoSoCanSua);
@@ -46,9 +46,9 @@ const postCreateUser = (req, res) => {
     const sinhVien = new SinhVien(ten, diaChi, maSo, diem3Mon);
     maHoSo++;
     const nganhHoc_beFound = dsNganhCuaTruong.find((nganhHienTai) => {
-        return nganhHienTai.getMaNganh() === maNganh;
+        return nganhHienTai.getMaNganh === maNganh;
     })
-    const nganhHoc = new Nganh(nganhHoc_beFound.getMaNganh(), nganhHoc_beFound.getTenNganh(), nganhHoc_beFound.getDiemChuan(), nganhHoc_beFound.getSoChiTieu());
+    const nganhHoc = new Nganh(nganhHoc_beFound.getMaNganh, nganhHoc_beFound.getTenNganh, nganhHoc_beFound.getDiemChuan, nganhHoc_beFound.getSoChiTieu);
     const hoSoDangKy = new HoSoDangKy(sinhVien, nganhHoc, maHoSo);
 
     quanLyTuyenSinh.themHoSoDangKy(hoSoDangKy);
@@ -64,7 +64,7 @@ const postUpdateUser = (req, res) => {
     const maNganh_new = req.body.nganhHoc;
 
     const nganhHoc_beFound = dsNganhCuaTruong.find((nganhHienTai) => {
-        return nganhHienTai.getMaNganh() === maNganh_new;
+        return nganhHienTai.getMaNganh === maNganh_new;
     })
 
     const nganhHoc_new = Object.assign({}, nganhHoc_beFound);
@@ -81,7 +81,7 @@ const postUpdateUser = (req, res) => {
 const postDeleteUser = (req, res) => {
     maHoSoCanXoa = +req.params.id;
 
-    let hoSoCanXoa = quanLyTuyenSinh.getDsHoSoDangKy().find((hoSo) => {
+    let hoSoCanXoa = quanLyTuyenSinh.getDsHoSoDangKy.find((hoSo) => {
         return hoSo.maHoSo === maHoSoCanXoa;
     })
     quanLyTuyenSinh.xoaHoSoDangKy(hoSoCanXoa);
@@ -90,7 +90,7 @@ const postDeleteUser = (req, res) => {
 
 const postHandleUser = (req, res) => {
     quanLyTuyenSinh.xuLyHoSoDangKy();
-    console.log(quanLyTuyenSinh.getDsHoSoDau());
+    console.log(quanLyTuyenSinh.getDsHoSoDau);
     res.redirect('/');
 }
 

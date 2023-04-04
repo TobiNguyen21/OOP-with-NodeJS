@@ -9,13 +9,13 @@ class QuanLyTuyenSinh {
         this.dsHoSoDau = [];
     }
 
-    getDsNganhCuaTruong() {
+    get getDsNganhCuaTruong() {
         return this.dsNganhCuaTruong;
     }
-    getDsHoSoDangKy() {
+    get getDsHoSoDangKy() {
         return this.dsHoSoDangKy;
     }
-    getDsHoSoDau() {
+    get getDsHoSoDau() {
         return this.dsHoSoDau;
     }
 
@@ -28,9 +28,9 @@ class QuanLyTuyenSinh {
     suaHoSoDangKy(maHoSoCanSua, sinhVien_new, nganhHoc_new) {
         this.dsHoSoDau.splice(0, this.dsHoSoDau.length);// reset list
         this.dsHoSoDangKy.forEach((hoSoHienTai) => {
-            if (hoSoHienTai.getMaHoSo() === maHoSoCanSua) {
-                hoSoHienTai.setSinhVien(sinhVien_new);
-                hoSoHienTai.setNganhHoc(nganhHoc_new);
+            if (hoSoHienTai.getMaHoSo === maHoSoCanSua) {
+                hoSoHienTai.setSinhVien = sinhVien_new;
+                hoSoHienTai.setNganhHoc = nganhHoc_new;
             }
         })
     }
@@ -48,7 +48,7 @@ class QuanLyTuyenSinh {
         this.dsHoSoDau.splice(0, this.dsHoSoDau.length);// reset list
         this.dsHoSoDangKy.forEach((hoSoHienTai) => {
             this.dsNganhCuaTruong.forEach((nganhHienTai) => {
-                if (hoSoHienTai.nganhHoc.getMaNganh() === nganhHienTai.getMaNganh() && hoSoHienTai.sinhVien.getDiem3Mon() >= nganhHienTai.getDiemChuan()) {
+                if (hoSoHienTai.nganhHoc.getMaNganh === nganhHienTai.getMaNganh && hoSoHienTai.sinhVien.getDiem3Mon >= nganhHienTai.getDiemChuan) {
                     this.dsHoSoDau.push(hoSoHienTai);
                 }
             })

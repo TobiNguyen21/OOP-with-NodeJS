@@ -7,31 +7,31 @@ class Nganh {
         this.soChiTieu = soChiTieu;
     };
 
-    getMaNganh() {
+    get getMaNganh() {
         return this.maNganh;
     }
-    setMaNganh(maNganh) {
+    set setMaNganh(maNganh) {
         this.maNganh = maNganh;
     }
 
-    getTenNganh() {
+    get getTenNganh() {
         return this.tenNganh;
     }
-    setTenNganh(tenNganh) {
+    set setTenNganh(tenNganh) {
         this.tenNganh = tenNganh;
     }
 
-    getDiemChuan() {
+    get getDiemChuan() {
         return this.diemChuan;
     }
-    setDiemChuan(diemChuan) {
+    set setDiemChuan(diemChuan) {
         this.diemChuan = diemChuan;
     }
 
-    getSoChiTieu() {
+    get getSoChiTieu() {
         return this.soChiTieu;
     }
-    setSoChiTieu(soChiTieu) {
+    set setSoChiTieu(soChiTieu) {
         this.soChiTieu = soChiTieu;
     }
 };

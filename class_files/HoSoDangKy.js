@@ -6,30 +6,30 @@ class HoSoDangKy {
         this.maHoSo = maHoSo;
     };
 
-    getSinhVien() {
+    get getSinhVien() {
         return this.sinhVien;
     }
-    setSinhVien(sinhVien) {
-        this.sinhVien.setTen(sinhVien.ten);
-        this.sinhVien.setDiaChi(sinhVien.diaChi);
-        this.sinhVien.setMaSo(sinhVien.maSo);
-        this.sinhVien.setDiem3Mon(sinhVien.diem3Mon);
+    set setSinhVien(sinhVien) {
+        this.sinhVien.setTen = sinhVien.getTen;
+        this.sinhVien.setDiaChi = sinhVien.getDiaChi;
+        this.sinhVien.setMaSo = sinhVien.getMaSo;
+        this.sinhVien.setDiem3Mon = sinhVien.getDiem3Mon;
     }
 
-    getNganhHoc() {
+    get getNganhHoc() {
         return this.nganhHoc;
     }
 
-    setNganhHoc(nganhHoc) {
-        this.nganhHoc.setMaNganh(nganhHoc.maNganh);
-        this.nganhHoc.setTenNganh(nganhHoc.tenNganh);
-        this.nganhHoc.setDiemChuan(nganhHoc.diemChuan);
+    set setNganhHoc(nganhHoc) {
+        this.nganhHoc.setMaNganh = nganhHoc.maNganh;
+        this.nganhHoc.setTenNganh = nganhHoc.tenNganh;
+        this.nganhHoc.setDiemChuan = nganhHoc.diemChuan;
     }
 
-    getMaHoSo() {
+    get getMaHoSo() {
         return this.maHoSo;
     }
-    setMaHoSo(maHoSo) {
+    set setMaHoSo(maHoSo) {
         this.maHoSo = maHoSo;
     }
 };

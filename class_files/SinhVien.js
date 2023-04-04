@@ -8,31 +8,31 @@ class SinhVien {
     };
 
     //getter, setter
-    getTen() {
+    get getTen() {
         return this.ten;
     }
-    setTen(ten) {
+    set setTen(ten) {
         this.ten = ten;
     }
 
-    getDiaChi() {
+    get getDiaChi() {
         return this.diaChi;
     }
-    setDiaChi(diaChi) {
+    set setDiaChi(diaChi) {
         this.diaChi = diaChi;
     }
 
-    getMaSo() {
+    get getMaSo() {
         return this.maSo;
     }
-    setMaSo(maSo) {
+    set setMaSo(maSo) {
         this.maSo = maSo;
     }
 
-    getDiem3Mon() {
+    get getDiem3Mon() {
         return this.diem3Mon;
     }
-    setDiem3Mon(diem3Mon) {
+    set setDiem3Mon(diem3Mon) {
         this.diem3Mon = diem3Mon;
     }
 };
