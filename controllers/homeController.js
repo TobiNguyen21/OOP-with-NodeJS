@@ -8,6 +8,7 @@ let maHoSo = 0;
 let maHoSoCanSua, maHoSoCanXoa;
 let dsNganhCuaTruong = quanLyTuyenSinh.getDsNganhCuaTruong();
 
+//---------------Methods get-------------------------
 const getHomePage = (req, res) => {
     const dsHoSoDangKy = quanLyTuyenSinh.getDsHoSoDangKy();
     const dsHoSoDau = quanLyTuyenSinh.getDsHoSoDau();
@@ -34,12 +35,13 @@ const getEditPage = (req, res) => {
     res.render('edit.ejs', { hoSoCanSua: hoSoCanSua, listNganh: dsNganhCuaTruong });
 }
 
+//--------------------Methods post-----------------------------
 const postCreateUser = (req, res) => {
-    const maNganh = req.body.nganhHoc;
     const ten = req.body.ten;
     const diaChi = req.body.diaChi;
     const maSo = req.body.maSo;
     const diem3Mon = +req.body.diem3Mon;
+    const maNganh = req.body.nganhHoc;
 
     const sinhVien = new SinhVien(ten, diaChi, maSo, diem3Mon);
     maHoSo++;
@@ -55,11 +57,11 @@ const postCreateUser = (req, res) => {
 }
 
 const postUpdateUser = (req, res) => {
-    const maNganh_new = req.body.nganhHoc;
     const ten_new = req.body.ten;
     const diaChi_new = req.body.diaChi;
     const maSo_new = req.body.maSo;
     const diem3Mon_new = +req.body.diem3Mon;
+    const maNganh_new = req.body.nganhHoc;
 
     const nganhHoc_beFound = dsNganhCuaTruong.find((nganhHienTai) => {
         return nganhHienTai.getMaNganh() === maNganh_new;

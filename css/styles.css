@@ -63,6 +63,12 @@ tr:hover {
     padding-top: 100px;
 }
 
+@media (max-width: 768px) {
+    .form-add-users {
+        width: 90%;
+    }
+}
+
 .input-group {
     padding: 10px;
 }
@@ -220,4 +226,76 @@ fieldset {
     /* Khoảng cách giữa nội dung và đường viền */
     margin-bottom: 10px;
     /* Khoảng cách giữa các phần tử */
+}
+
+/* Thiết lập kiểu dáng cho màn hình có chiều rộng tối đa là 768px */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 10px 15px;
+    }
+
+    .title {
+        font-size: 20px;
+        padding-bottom: 5px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .topnav a {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .form-add-users {
+        width: 100%;
+        padding-top: 50px;
+    }
+
+    .form-add-users input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .form-add-users button {
+        padding: 8px 16px;
+    }
+}
+
+/* Thiết lập kiểu dáng cho màn hình có chiều rộng tối đa là 480px */
+@media (max-width: 480px) {
+    .table-container {
+        padding: 5px 10px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .topnav a {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .form-add-users {
+        padding-top: 30px;
+    }
+
+    .form-add-users input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .form-add-users button {
+        padding: 6px 12px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
 }

@@ -1,6 +1,6 @@
 const Nganh = require('./Nganh');
 const HoSoDangKy = require('./HoSoDangKy');
-const SinhVien = require('./SinhVien');
+
 // Định nghĩa lớp Quản lý tuyển sinh
 class QuanLyTuyenSinh {
     constructor() {
@@ -26,6 +26,7 @@ class QuanLyTuyenSinh {
 
     //Phương thức sửa hồ sơ
     suaHoSoDangKy(maHoSoCanSua, sinhVien_new, nganhHoc_new) {
+        this.dsHoSoDau.splice(0, this.dsHoSoDau.length);// reset list
         this.dsHoSoDangKy.forEach((hoSoHienTai) => {
             if (hoSoHienTai.getMaHoSo() === maHoSoCanSua) {
                 hoSoHienTai.setSinhVien(sinhVien_new);
@@ -59,11 +60,11 @@ class QuanLyTuyenSinh {
 const quanLyTuyenSinh = new QuanLyTuyenSinh();
 
 // Khởi tạo các đối tượng
-const CNTT = new Nganh('CNTT', "Công nghệ thông tin", 27, 500);
+const CNTT = new Nganh('CNTT', "Công nghệ thông tin", 27, 400);
 quanLyTuyenSinh.dsNganhCuaTruong.push(CNTT);
-const KHMT = new Nganh('KHMT', "Khoa học máy tính", 28, 100);
+const KHMT = new Nganh('KHMT', "Khoa học máy tính", 28, 160);
 quanLyTuyenSinh.dsNganhCuaTruong.push(KHMT);
-const KHDL = new Nganh('KHDL', "Khoa học dữ liệu", 25.5, 50);
+const KHDL = new Nganh('KHDL', "Khoa học dữ liệu", 25.5, 150);
 quanLyTuyenSinh.dsNganhCuaTruong.push(KHDL);
 const DTVT = new Nganh('DTVT', "Điện Tử Viễn Thông", 24.5, 300);
 quanLyTuyenSinh.dsNganhCuaTruong.push(DTVT);

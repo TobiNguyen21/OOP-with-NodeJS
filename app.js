@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 //cấu hình file tĩnh 
 app.use(express.static(path.join(__dirname, 'css')));
 
-//Thiết lập middleware
+//cấu hình middleware
 app.use(bodyParser.urlencoded({ extended: true }));//thiết lập middleware để phân tích và đọc dữ liệu được gửi lên từ client dưới dạng urlencoded
 app.use(bodyParser.json());//thiết lập middleware để phân tích và đọc dữ liệu được gửi lên từ client dưới dạng JSON
 

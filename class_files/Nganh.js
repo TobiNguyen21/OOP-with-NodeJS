@@ -35,5 +35,4 @@ class Nganh {
         this.soChiTieu = soChiTieu;
     }
 };
-
 module.exports = Nganh;

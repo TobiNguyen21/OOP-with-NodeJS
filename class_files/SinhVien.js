@@ -7,9 +7,7 @@ class SinhVien {
         this.diem3Mon = diem3Mon;
     };
 
-    //Đóng gói
     //getter, setter
-
     getTen() {
         return this.ten;
     }
